@@ -1,13 +1,14 @@
 package ua.mohylin.vending.machine.model;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import lombok.Data;
 
 @Data
 @Entity
-public class RowOccupancy implements Serializable {
+@IdClass(RowOccupancyId.class)
+public class RowOccupancy {
 
   @Id private int shelfNumber;
 

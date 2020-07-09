@@ -1,0 +1,1 @@
+insert into product(id, name, size) values(10, 'Coca-Cola', 2);

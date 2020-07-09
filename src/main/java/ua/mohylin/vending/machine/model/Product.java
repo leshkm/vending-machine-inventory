@@ -1,6 +1,7 @@
 package ua.mohylin.vending.machine.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.Data;
 
@@ -8,7 +9,7 @@ import lombok.Data;
 @Data
 public class Product {
 
-  @Id private int id;
+  @Id @GeneratedValue private int id;
 
   private int size;
 
