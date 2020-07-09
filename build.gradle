@@ -4,6 +4,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'application'
 }
 
 wrapper {
@@ -13,6 +14,11 @@ wrapper {
 group = 'ua.mohylin.vending.machine'
 
 sourceCompatibility = 11
+
+
+ext {
+    immutablesVersion = '2.8.2'
+}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -24,6 +30,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     implementation "org.mapstruct:mapstruct:1.3.1.Final"
     annotationProcessor "org.mapstruct:mapstruct-processor:1.3.1.Final"
+
+    annotationProcessor group: 'org.immutables', name: 'value-processor', version: immutablesVersion
+    implementation group: 'org.immutables', name: 'value', version: immutablesVersion
+    compileOnly group: 'org.immutables', name: 'value-annotations', version: immutablesVersion
+    compileOnly group: 'org.immutables', name: 'annotate', version: immutablesVersion
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -31,6 +43,7 @@ dependencies {
 }
 
 apply plugin: 'com.diffplug.gradle.spotless'
+apply plugin: 'application'
 
 spotless {
     java {
@@ -70,8 +83,15 @@ test {
     useJUnitPlatform()
 }
 
+mainClassName = 'ua.mohylin.vending.machine.InventoryApplication'
+
+application {
+    mainClass = mainClassName
+}
+
 jar {
+    enabled = true
     manifest {
-        attributes 'Main-Class': 'ua.mohylin.vending.machine.InventoryApplication'
+        attributes 'Main-Class': mainClassName
     }
 }
