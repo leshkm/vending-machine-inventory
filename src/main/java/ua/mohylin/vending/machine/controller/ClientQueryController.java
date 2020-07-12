@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.mohylin.vending.machine.dto.query.CheckProductAvailabilityQuery;
 import ua.mohylin.vending.machine.dto.query.CheckProductAvailabilityResponse;
 
-/** Handles commands from clients, i.e. for checking if product is available or releasing it */
+/**
+ * Handles commands from clients, i.e. for checking if product is available or releasing it
+ *
+ * @author Oleksii Mohylin
+ */
 @RestController
 @RequestMapping("command")
 public class ClientQueryController {
